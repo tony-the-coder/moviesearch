@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './App.css'
+import './styles.css'
 import SearchMovies from "./searchMovies.jsx";
 import FavoritesList from "./FavoritesList.jsx";
 import MovieModal from "./MovieModal.jsx";
@@ -23,7 +24,7 @@ function App() {
         setIsModalOpen(true)
     }
     const closeModal = () => {
-        selectedMovie(null)
+        setSelectedMovie(null)
         setIsModalOpen(false)
     }
 

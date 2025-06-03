@@ -1,5 +1,5 @@
 import Modal from 'react-modal'
-function MovieModal( { movie, isModalOpen, closeModal}) {
+function MovieModal( { movie, isModalOpen, closeModal }) {
 
 
     return (
@@ -7,22 +7,25 @@ function MovieModal( { movie, isModalOpen, closeModal}) {
             isOpen={isModalOpen}
             onRequestClose={closeModal}
             contentLabel={movie.Title}
-            >
-            <div>
-                <span onClick={closeModal}>
+            className="modal"
+            overlayClassName="modal-overlay"
+        >
+
+            <div className="modal-content">
+                <span className="close" onClick={closeModal}>
 
                     &times;
                 </span>
-                <div>
+                <div className="modal-header">
                     <img src={movie.Poster} alt={movie.Title} />
 
-                    <div>
+                    <div className="modal-title">
                         <h2>{movie.Title}</h2>
                         {/*console.log({movie.Title})*/}
                         <p>{movie.Year}</p>
                     </div>
                 </div>
-                    <div>
+                    <div className="modal-body">
                         <p>
                             <strong>Genre:</strong> {movie.Genre}
                         </p>

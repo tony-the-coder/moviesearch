@@ -2,10 +2,10 @@ import FavoriteMovie from "./FavoriteMovie.jsx";
 
 function FavoritesList(props){
     return (
-        <div>
+        <div className="favorites-container">
             <h3>My Favorite Movies</h3>
             {props.favorites.length > 0 ? (
-            <ul>
+            <ul className="favorite-list">
                 {props.favorites.map(movie => (
                     <FavoriteMovie
                         movie={movie}

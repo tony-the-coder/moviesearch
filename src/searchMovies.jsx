@@ -18,7 +18,7 @@ function SearchMovies(props){
 
 
     return(
-        <div>
+        <div className="search-movies">
             <form onSubmit={searchMovie}>
                 <label htmlFor="query">Movie Title</label>
                 <input
