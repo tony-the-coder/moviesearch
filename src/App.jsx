@@ -6,17 +6,34 @@ import SearchMovies from "./searchMovies.jsx";
 import FavoritesList from "./FavoritesList.jsx";
 import MovieModal from "./MovieModal.jsx";
 
+// Import Modal to set the app element for accessibility
+import Modal from 'react-modal'; //
+
+// Set the app element for react-modal to handle accessibility
+// This should ideally be done once, typically in main.jsx or the entry point
+// For this example, if not already in main.jsx, add it here for clarity.
+Modal.setAppElement('#root'); //
+
+
 function App() {
     const [favorites, setFavorites] = useState([])
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState(null)
 
     const addFavorite = (movie) => {
-        setFavorites([...favorites, movie])
+        // Ensure that the movie being added has a unique imdbID
+        if (movie && movie.imdbID && !favorites.some(f => f.imdbID === movie.imdbID)) {
+            setFavorites([...favorites, movie])
+        } else if (movie && movie.imdbID) {
+            console.log(`Movie with IMDB ID ${movie.imdbID} is already in favorites.`);
+        } else {
+            console.log("Attempted to add an invalid movie or a movie without an IMDB ID.");
+        }
     }
 
     const removeFavorite = (movie) => {
-        setFavorites(favorites.filter(f => f.imdb !== movie.imdb))
+        // Correctly filter based on imdbID
+        setFavorites(favorites.filter(f => f.imdbID !== movie.imdbID)) //
     }
 
     const showModal = (movie) => {
@@ -32,19 +49,18 @@ function App() {
 
     return (
         <div className="App">
-
             <SearchMovies addFavorite={addFavorite} />
             <FavoritesList
                 favorites={favorites}
                 removeFavorite={removeFavorite}
                 showModal={showModal}
-               />
-            { selectedMovie && (
-            <MovieModal
-                isModalOpen={isModalOpen}
-                closeModal={closeModal}
-                movie={selectedMovie}
             />
+            { selectedMovie && (
+                <MovieModal
+                    isModalOpen={isModalOpen}
+                    closeModal={closeModal}
+                    movie={selectedMovie}
+                />
             ) }
         </div>
     )
