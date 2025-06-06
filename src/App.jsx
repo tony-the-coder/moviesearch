@@ -6,12 +6,10 @@ import SearchMovies from "./searchMovies.jsx";
 import FavoritesList from "./FavoritesList.jsx";
 import MovieModal from "./MovieModal.jsx";
 
-// Import Modal to set the app element for accessibility
+
 import Modal from 'react-modal'; //
 
-// Set the app element for react-modal to handle accessibility
-// This should ideally be done once, typically in main.jsx or the entry point
-// For this example, if not already in main.jsx, add it here for clarity.
+
 Modal.setAppElement('#root'); //
 
 
